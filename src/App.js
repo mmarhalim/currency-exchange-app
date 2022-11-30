@@ -5,6 +5,8 @@ import Movie from './Movie';
 import Navigation from './Navigation';
 import Exchange from './Exchange';
 import Converter from './Converter';
+import Footer from './Footer';
+
 
 
 import './App.css';
@@ -23,6 +25,7 @@ const App = () => {
         <Route path="/converter" component={Converter} />
         <Route component={NotFound} />
       </Switch>
+      <Footer />
     </Router>
   );
 }
