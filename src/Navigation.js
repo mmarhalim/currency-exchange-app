@@ -11,8 +11,8 @@ const Navigation = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Currency Converter</Nav.Link>
-            <Nav.Link href="/">Exchange Rates</Nav.Link>
+            <Nav.Link href="/converter">Currency Converter</Nav.Link>
+            <Nav.Link href="/exchangerate">Exchange Rates</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
