@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import { json, checkStatus } from './utils';
 import currencies from './currencies';
 import Container from 'react-bootstrap/Container';
@@ -25,7 +24,7 @@ const ConvTable = (props) => {
         {rates.map(currency => 
           <tr key={currency.acronym}>
             <td>{currency.name} ({currency.acronym})</td>
-            <td>{currency.symbol} {currency.rate}</td>
+            <td>({currency.symbol}) {currency.rate}</td>
           </tr>
           )}
       </tbody>
@@ -39,7 +38,7 @@ class Exchange extends React.Component {
     this.state = {
       base: 'USD',
       rates: null,
-      loading: true,
+      loading: false,
     };
   }
 
@@ -78,19 +77,23 @@ class Exchange extends React.Component {
 
   render() {
     const { base, rates, loading } = this.state;
+    const currencyOptions = Object.keys(currencies).map(currencyAcronym => <option key={currencyAcronym} value={currencyAcronym}>{currencyAcronym}</option>);
+
 
     return (
       <Container>
         <Row>
           <Col>
-            <h1>Exchange Rates</h1>
-            <Form>
-              <h3>Base Currency: 1</h3>
-              <Form.Select value={base} onChange={this.changeBase} disable={{loading}.toString()}>
-                {Object.keys(currencies).map(currencyAcronym => <option key={currencyAcronym} value={currencyAcronym}>{currencyAcronym}</option>)}
-              </Form.Select>
-            </Form>
-            <ConvTable base={base} rates={rates} />
+            <h1 className='text-center m-3'>Exchange Rates</h1>
+            <h3 className='text-center m-3'>Base Currency: 1</h3>
+            <div className='mb-5 mt-5'>
+              <Form className='mb-3'>              
+                <Form.Select value={base} onChange={this.changeBase} disable={{loading}.toString()}>
+                  {currencyOptions}
+                </Form.Select>
+              </Form>
+              <ConvTable base={base} rates={rates} />
+            </div>
           </Col>
         </Row>
       </Container>
